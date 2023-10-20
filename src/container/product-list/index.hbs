@@ -1,0 +1,20 @@
+<div class="product-list-container">
+  <h1>Список товарів</h1>
+  <ul>
+    {{#each data.products}}
+      <li>
+        <span>{{this.name}}</span>
+        <span>{{this.price}} грн</span>
+        <span>{{this.description}}</span>
+        <form method="POST" action="/product-list">
+          <input type="hidden" name="productId" value="{{this.id}}">
+          <button type="submit" name="action" value="edit">Редагувати</button>
+          <button type="submit" name="action" value="delete">Видалити</button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+  <a href="/product-create" class="add-product-link">Додати товар</a>
+</div>
+
+

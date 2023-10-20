@@ -1,0 +1,10 @@
+<div class="product-delete-container">
+  <p>Ви впевнені, що бажаєте видалити цей товар?</p>
+  <form method="POST" action="/product-delete">
+    <input type="hidden" name="productId" value="{{productId}}">
+    <button type="submit">Так, видалити</button>
+    <a href="/product-list" class="cancel-link">Скасувати</a>
+  </form>
+</div>
+
+
