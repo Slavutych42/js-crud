@@ -1,3 +1,4 @@
+@use "../../lib/service.scss" as s;
 .header {
   background-color: #333;
   color: #fff;
@@ -34,3 +35,57 @@
   color: #ff6600;
   border-bottom: 2px solid #ff6600;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: s.space(4);
+    gap: s.space(8);
+
+    &__title {
+        font-size: s.space(5);
+        font-weight: bold;
+        padding-bottom: s.space(1);
+        border-bottom: 1px solid s.color("light");
+    };
+
+    &__content {
+        display: grid;
+        gap: s.space(6);
+    };
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: s.space(1);
+    }
+
+    &__label {
+        font-size: s.space(3);
+    }
+
+    &__input {
+        border: 1px solid s.color("light");
+        padding: s.space(2);
+    }
+
+    &__button {
+        border: 1px solid s.color("light");
+        padding: s.space(2);
+        border-radius: 20px;
+    }
+};
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(10);
+}
+
+.user-list {
+    li {
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+  }
