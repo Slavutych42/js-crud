@@ -1,0 +1,27 @@
+{{> heading title="Мої замовлення" info=null}}
+<div class="order-container">
+  {{#each data.orders}}
+  <div class="order">
+    Замовлення №{{this.id}}
+    <div class="order-info">
+      <div class="info-column">
+        <h4>Назва товару</h4>
+        <p>{{this.title}}</p>
+      </div>
+      <div class="info-column">
+        <h4>Загальна ціна</h4>
+        <p>{{this.totalPrice}}</p>
+      </div>
+      <div class="info-column">
+        <h4>Кількість нарахованих бонусів</h4>
+        <p>{{this.bonus}}</p>
+      </div>
+      <a href="/purchase-details?id={{this.id}}">Детальніше</a>
+    </div>
+  </div>
+  {{/each}}
+</div>
+<a href="/purchase-product">Повернутися до товару</a>
+
+
+

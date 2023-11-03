@@ -1,0 +1,56 @@
+@use '../../component/heading/style.scss' as heading;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/field/style.scss' as field;
+@use '../../component/divider/style.scss' as divider;
+@use '../../component/button/style.scss' as button;
+
+/* Стилізація контейнера для замовлень */
+.order-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  /* Стилізація окремого замовлення */
+  .order {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Стилізація назви замовлення */
+  .order::before {
+    content: 'Замовлення №';
+    font-weight: bold;
+  }
+  
+  /* Стилізація рядків інформації в замовленні */
+  .order-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  /* Стилізація колонок з інформацією */
+  .info-column {
+    flex: 1;
+    padding: 5px;
+  }
+  
+  /* Заголовок колонки */
+  .info-column h4 {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Стилізація інформації */
+  .info-column p {
+    margin: 0;
+  }
+  
+
+  
+

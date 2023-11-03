@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="dist/css/layout/default/style.css">
+    <link rel="stylesheet" href="dist/css/container/purchase-details/style.css">
+    <title>Purchase Details</title>
+</head>
+<body>
+    <h1>Purchase Details</h1>
+    {{#with data.purchase}}
+      <!-- Відображення інформації про покупця -->
+      <p>Customer Name: {{firstname}} {{lastname}}</p>
+      <p>Phone: {{phone}}</p>
+      <p>Email: {{email}}</p>
+      <p>Comment: {{comment}}</p>
+
+      <!-- Відображення інформації про замовлення -->
+      <p>Product Price: ${{productPrice}}</p>
+      <p>Total Price: ${{totalPrice}}</p>
+    {{/with}}
+
+    <!-- Відображення замовлень -->
+    {{#if data.orders.length}}
+      <h2>Замовлення</h2>
+      <ul>
+        {{#each data.orders}}
+          <li>{{this.text}} - Price: ${{this.price}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>Немає замовлень</p>
+    {{/if}}
+
+    <a href="/purchase-list">Повернутися до списку замовлень</a>
+</body>
+</html>
+
+
+
+
+
+
+

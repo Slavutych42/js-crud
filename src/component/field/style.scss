@@ -1,0 +1,20 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.field__label {
+    font-size: 14px;
+}
+
+.field__input {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.field--disabled {
+    position: absolute;
+    display: none;
+}

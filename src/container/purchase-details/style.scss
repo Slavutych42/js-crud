@@ -1,0 +1,41 @@
+@use '../../component/heading/style.scss' as heading;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/field/style.scss' as field;
+@use '../../component/divider/style.scss' as divider;
+@use '../../component/button/style.scss' as button;
+
+/* Основні стилі для сторінки purchase-details */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  main {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .customer-info,
+  .comment,
+  .order-info {
+    margin-bottom: 20px;
+  }
+  
+  /* Стилі для посилання "Назад до списку замовлень" */
+  a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0078d4;
+    font-weight: 600;
+  }
+  
