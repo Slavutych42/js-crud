@@ -396,11 +396,18 @@ router.get('/purchase-list', function (req, res) {
 })
 
 router.get('/purchase-details/:id', function (req, res) {
-  const id = Number(req.params.id)
-  const purchase = Purchase.getById(id)
+  const purchaseId = Number(req.params.id)
+  const purchase = Purchase.getById(purchaseId)
 
-  if (!purchase) {
-    return res.status(404).render('alert', {
+  if (purchase) {
+    res.render('purchase-details', {
+      style: 'purchase-details',
+      data: {
+        purchase: purchase,
+      },
+    })
+  } else {
+    res.status(404).render('alert', {
       style: 'alert',
       data: {
         message: 'Помилка',
@@ -409,27 +416,6 @@ router.get('/purchase-details/:id', function (req, res) {
       },
     })
   }
-
-  const bonus = Purchase.calcBonusAmount(
-    purchase.totalPrice,
-  )
-  res.render('purchase-details', {
-    style: 'purchase-details',
-    data: {
-      id: purchase.id,
-      firstname: purchase.firstname,
-      lastname: purchase.lastname,
-      phone: purchase.phone,
-      email: purchase.email,
-      product: purchase.product.title,
-      productPrice: purchase.productPrice,
-      deliveryPrice: purchase.deliveryPrice,
-      totalPrice: purchase.totalPrice,
-      bonus: bonus,
-    },
-  })
 })
-
-module.exports = router
 
 module.exports = router
