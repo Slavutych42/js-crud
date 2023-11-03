@@ -125,51 +125,50 @@
   background: #beb7b7;
 }
 
-/* Стилізація контейнера для замовлень */
-.order-container {
+.purchase-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 30px;
+  align-items: center;
 }
 
-/* Стилізація окремого замовлення */
-.order {
+.purchase-item-link {
+  text-decoration: none;
+  color: #333;
+  margin: 10px 0;
+  display: block;
+}
+
+.purchase-item {
   border: 1px solid #ccc;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-/* Стилізація назви замовлення */
-.order::before {
-  content: "Замовлення №";
-  font-weight: bold;
-}
-
-/* Стилізація рядків інформації в замовленні */
-.order-info {
+  width: 80%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
+  background-color: #f5f5f5;
 }
 
-/* Стилізація колонок з інформацією */
-.info-column {
+.purchase-item__block {
   flex: 1;
-  padding: 5px;
+  text-align: center;
 }
 
-/* Заголовок колонки */
-.info-column h4 {
+.title {
   font-weight: bold;
-  margin: 0;
+  font-size: 1.2rem;
 }
 
-/* Стилізація інформації */
-.info-column p {
-  margin: 0;
+.text {
+  font-size: 1rem;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

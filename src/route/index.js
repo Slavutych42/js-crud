@@ -376,55 +376,54 @@ router.get('/alert', function (req, res) {
 })
 
 router.get('/purchase-list', function (req, res) {
-  const orders = req.session.orders || []
+  // console.log(bonus)
+  const list = Purchase.getList()
+  console.log('purchase-list:', list)
 
   res.render('purchase-list', {
     style: 'purchase-list',
+
+    component: ['heading', 'purchase-item', 'divider'],
+    title: 'Мої замовлення',
+
     data: {
-      orders: orders,
+      purchases: {
+        list,
+      },
+      // bonus,
     },
   })
   console.log(orders)
 })
 
-router.get('/purchase-details/:id', function (req, res) {
-  const purchaseId = Number(req.params.id)
-  console.log(purchaseId)
-  if (purchaseId) {
-    const orders = req.session.orders || []
-    console.log(orders)
-    const purchase = orders.find(
-      (order) => order.id === purchaseId,
-    )
-    console.log(purchase)
+router.get('/purchase-details?=id', function (req, res) {
+  const id = Number(req.query.id)
+  const purchase = Purchase.getById(id)
+  const bonus = Purchase.calcBonusAmount(
+    purchase.totalPrice,
+  )
 
-    if (purchase) {
-      res.render('purchase-details', {
-        style: 'purchase-details',
-        data: {
-          purchase: purchase,
-        },
-      })
-    } else {
-      res.status(404).render('alert', {
-        style: 'alert',
-        data: {
-          message: 'Помилка',
-          info: 'Замовлення не знайдено',
-          link: '/purchase-list',
-        },
-      })
-    }
-  } else {
-    res.status(404).render('alert', {
-      style: 'alert',
-      data: {
-        message: 'Помилка',
-        info: 'Некоректний ідентифікатор замовлення',
-        link: '/purchase-list',
-      },
-    })
-  }
+  res.render('purchase-details', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'purchase-details',
+    component: ['heading', 'divider', 'button'],
+
+    title: 'Інформація про замовлення',
+
+    data: {
+      id: purchase.id,
+      firstname: purchase.firstname,
+      lastname: purchase.lastname,
+      phone: purchase.phone,
+      email: purchase.email,
+      delivery: purchase.delivery,
+      product: purchase.product.title,
+      productPrice: purchase.productPrice,
+      deliveryPrice: purchase.deliveryPrice,
+      totalPrice: purchase.totalPrice,
+      bonus: bonus,
+    },
+  })
 })
 
 module.exports = router
