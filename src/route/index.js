@@ -395,13 +395,13 @@ router.get('/purchase-list', function (req, res) {
   })
 })
 
-router.get('/purchase-details/:id', function (req, res) {
+router.get('/purchase-info/:id', function (req, res) {
   const purchaseId = Number(req.params.id)
   const purchase = Purchase.getById(purchaseId)
 
   if (purchase) {
-    res.render('purchase-details', {
-      style: 'purchase-details',
+    res.render('purchase-info', {
+      style: 'purchase-info',
       data: {
         purchase: purchase,
       },
@@ -416,6 +416,70 @@ router.get('/purchase-details/:id', function (req, res) {
       },
     })
   }
+})
+
+router.get('/purchase-edit/:id', function (req, res) {
+  const id = Number(req.params.id) // Отримайте ID з параметру URL
+
+  const purchase = Purchase.getById(id)
+  if (!purchase) {
+    // Перевірте, чи замовлення існує, інакше відобразіть повідомлення про помилку
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Замовлення не знайдено',
+        link: '/purchase-list',
+      },
+    })
+  }
+
+  res.render('purchase-edit', {
+    style: 'purchase-edit',
+    data: {
+      purchase, // Передайте дані про замовлення на сторінку редагування
+    },
+  })
+})
+
+router.post('/purchase-update/:id', function (req, res) {
+  const id = Number(req.params.id) // Отримайте ID з параметру URL
+  const {
+    editFirstname,
+    editLastname,
+    editPhone,
+    editEmail,
+    editComment,
+  } = req.body
+
+  const purchase = Purchase.getById(id)
+  if (!purchase) {
+    // Перевірте, чи замовлення існує, інакше відобразіть повідомлення про помилку
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Замовлення не знайдено',
+        link: '/purchase-list',
+      },
+    })
+  }
+
+  // Оновіть дані про замовника
+  purchase.firstname = editFirstname
+  purchase.lastname = editLastname
+  purchase.phone = editPhone
+  purchase.email = editEmail
+  purchase.comment = editComment
+
+  res.render('alert', {
+    style: 'alert',
+    data: {
+      message: 'Операція успішна',
+      info: 'Дані про замовника оновлено',
+      link: '/purchase-list',
+    },
+  })
 })
 
 module.exports = router

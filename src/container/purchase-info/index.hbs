@@ -1,0 +1,31 @@
+ {{> heading title="Деталі замовлення"}}
+{{#with data.purchase}}
+        <form action="/purchase-update/{{id}}" method="post">
+            <label for="editFirstname">First Name:</label>
+            <input type="text" name="editFirstname" id="editFirstname" value="{{firstname}}" required>
+            
+            <label for="editLastname">Last Name:</label>
+            <input type="text" name="editLastname" id="editLastname" value="{{lastname}}" required>
+            
+            <label for="editPhone">Phone:</label>
+            <input type="text" name="editPhone" id="editPhone" value="{{phone}}" required>
+            
+            <label for="editEmail">Email:</label>
+            <input type="email" name="editEmail" id="editEmail" value="{{email}}" required>
+            
+            <label for="editComment">Comment:</label>
+            <textarea name="editComment" id="editComment">{{comment}}</textarea>
+            
+            <button type="submit">Save Changes</button>
+        </form>
+    {{/with}}
+
+    <a href="/purchase-info/{{data.purchase.id}}">Back to Purchase Details</a>
+
+
+
+
+
+
+
+
