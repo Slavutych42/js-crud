@@ -377,13 +377,21 @@ router.get('/alert', function (req, res) {
 
 router.get('/purchase-list', function (req, res) {
   const list = Purchase.getList()
+  const bonus = Purchase.getBonusBalance(req.session.email)
+  const data = {
+    purchases: {
+      list: list.map((purchase) => ({
+        id: purchase.id,
+        product: purchase.product.title,
+        totalPrice: purchase.totalPrice,
+        bonus: bonus,
+      })),
+    },
+  }
+
   res.render('purchase-list', {
     style: 'purchase-list',
-    data: {
-      purchases: {
-        list,
-      },
-    },
+    data,
   })
 })
 
