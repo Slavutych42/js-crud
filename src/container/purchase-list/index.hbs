@@ -1,27 +1,26 @@
 {{> heading title="Мої замовлення" info=null}}
 {{#with data.purchases}}
-      {{#each list}}
-  <div class='purchase-item'>
-    <div class='purchase-item__block'>
-      <span class='title'>ID: {{id}}</span>
+  {{#each list}}
+    <div class='purchase-item'>
+      <div class='purchase-item__block'>
+        <span class='title'>ID: {{id}}</span>
+      </div>
+      <div class='purchase-item__block'>
+        <span class='title'>Товари</span>
+        <span class='text'>{{product}}</span>
+      </div>
+      <div class='purchase-item__block'>
+        <span class='title'>Сума замовлення</span>
+        <span class='text'>{{totalPrice}} грн</span>
+      </div>
+      <div class='purchase-item__block'>
+        <span class='title'>Нараховані бонуси</span>
+        <span class='text'>{{bonus}} грн</span>
+      </div>
+      <a href='/purchase-details/{{id}}'>Деталі</a>
     </div>
-    <div class='purchase-item__block'>
-      <span class='title'>Товари</span>
-      <span class='text'>{{product}}</span>
-    </div>
-    <div class='purchase-item__block'>
-      <span class='title'>Сума замовлення</span>
-      <span class='text'>{{totalPrice}} грн</span>
-    </div>
-    <div class='purchase-item__block'>
-      <span class='title'>Нараховані бонуси</span>
-      <span class='text'>{{bonus}} грн</span>
-    </div>
-  </div>
-      {{/each}}
-       <a href='/purchase-details?id={{id}}'></a>
+  {{/each}}
 {{/with}}
-  
 </div>
 <a href="/purchase-product">Повернутися до товару</a>
 
