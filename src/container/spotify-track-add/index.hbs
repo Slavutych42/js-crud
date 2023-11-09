@@ -1,0 +1,30 @@
+<main class="main">
+    {{#with data}}
+        <div class="main__content">
+            <h1 class="title title--center">{{name}}</h1>
+
+            <ul class="track__list">
+              {{#each tracks}}
+                <li class="track">
+                  <img src="{{this.image}}">
+                  <div class="track__content">
+                    <strong class="track__name">{{this.name}}</strong>
+                    <span>{{this.author}}</span>
+                  </div>
+                  <form method="POST" action="/spotify-track-add">
+                    <input type="hidden" name="trackId" value="{{id}}">
+                    <input type="hidden" name="playlistId" value="{{../playlistId}}">
+                    <button type="submit" class="add-button">
+                      <img src="/svg/add-button_small.svg">
+                    </button>
+                  </form>
+
+                </li>
+              {{/each}}
+            </ul>
+        </div>
+    {{/with}}
+</main>
+
+
+
