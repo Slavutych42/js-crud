@@ -11,7 +11,7 @@
                     <strong class="track__name">{{this.name}}</strong>
                     <span>{{this.author}}</span>
                   </div>
-                  <form method="POST" action="/spotify-playlistAdd">
+                  <form method="POST" action="/spotify-track-add">
                     <input type="hidden" name="trackId" value="{{this.id}}">
                     <input type="hidden" name="playlistId" value="{{this.playlistId}}">
                     <button type="submit" class="add-button">

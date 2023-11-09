@@ -263,51 +263,55 @@ router.post('/spotify-search', function (req, res) {
   })
 })
 
-router.get('/spotify-playlistAdd', function (req, res) {
-  const tracks = Track.getList()
-  const playlistId = req.query.id
-  console.log(tracks, playlistId)
-  res.render('spotify-playlistAdd', {
-    style: 'spotify-playlistAdd',
+router.get('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
+  const playlist = Playlist.getById(playlistId)
+  const allTracks = Track.getList()
+  console.log(playlistId, playlist, allTracks)
+  res.render('spotify-track-add', {
+    style: 'spotify-track-add',
     data: {
-      tracks,
-      playlistId,
+      playlistId: playlist.id,
+      tracks: allTracks,
+      link: `/spotify-track-add?playlistId={playlistId}}&trackId=={id}}`,
     },
   })
 })
 
-router.post('/spotify-playlistAdd', function (req, res) {
-  console.log(req.body.trackId, req.body.playlistId)
-  const trackId = parseInt(req.body.trackId, 10)
-  let playlistId = parseInt(req.body.playlistId, 10)
+router.post('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.body.playlistId)
+  const trackId = Number(req.body.trackId)
 
-  if (isNaN(trackId) || isNaN(playlistId)) {
-    // Перевірка чи ID є числами
-    return res.status(400).render('alert', {
-      data: {
-        message: 'Помилка',
-        info: 'ID треку або плейліста не є числом.',
-      },
-    })
-  }
-
-  const track = Track.getById(trackId)
   const playlist = Playlist.getById(playlistId)
 
-  if (!track || !playlist) {
-    // Перевірка чи існують об'єкти з такими ID
-    return res.status(404).render('alert', {
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
       data: {
         message: 'Помилка',
-        info: 'Плейлист або трек не знайдено.',
+        info: 'Такого плейліста не знайдено',
+        link: `/spotify-playlist?id=${playlistId}`,
       },
     })
   }
 
-  // Додаємо трек у плейлист
-  playlist.tracks.push(track)
+  const trackToAdd = Track.getList().find(
+    (track) => track.id === trackId,
+  )
 
-  // Рендеримо сторінку плейлиста з оновленим списком треків
+  if (!trackToAdd) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Такого треку не знайдено',
+        link: `/spotify-track-add?playlistId=${playlistId}`,
+      },
+    })
+  }
+
+  playlist.tracks.push(trackToAdd)
+
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
     data: {
