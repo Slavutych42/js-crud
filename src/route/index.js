@@ -51,7 +51,6 @@ Track.create(
   'Monatic',
   'https://picsum.photos/100/100',
 )
-console.log(Track.getList())
 
 class Playlist {
   static #list = []
@@ -109,9 +108,13 @@ Playlist.makeMix(Playlist.create('Test2'))
 Playlist.makeMix(Playlist.create('Test3'))
 
 router.get('/', function (req, res) {
-  res.render('spotify-choose', {
-    style: 'spotify-choose',
-    data: {},
+  const playlists = Playlist.getList()
+
+  res.render('spotify-index', {
+    style: 'spotify-index',
+    data: {
+      playlists: playlists,
+    },
   })
 })
 
